@@ -28,6 +28,12 @@ const ViewTasks = ({ heading, description, tasks, type }) => {
                     'none'
                 )}
             </Space>
+
+            <Space direction='vertical'>
+                <Space style={{ color: '#808080' }}>Project</Space>
+               <Tag color='red'>{task.project.name}</Tag>
+                
+            </Space>
         </Space>
     );
 

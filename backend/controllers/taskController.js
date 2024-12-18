@@ -84,7 +84,9 @@ const getTasksDueToday = async (req, res) => {
 
         const tasks = await Task.find({
             dueDate: { $gte: today, $lt: tomorrow },
-        }).sort({ dueDate: 1 });
+        })
+        .populate('project')
+        .sort({ dueDate: 1 });
 
         res.json(tasks);
     } catch (err) {
@@ -92,6 +94,7 @@ const getTasksDueToday = async (req, res) => {
         res.status(500).send('Server Error');
     }
 };
+
 
 // Tasks upcoming in the next 3 months
 const getUpcomingTasks = async (req, res) => {
@@ -103,7 +106,7 @@ const getUpcomingTasks = async (req, res) => {
 
         const tasks = await Task.find({
             dueDate: { $gte: today, $lte: threeMonthsLater },
-        }).sort({ dueDate: 1 });
+        }).populate('project').sort({ dueDate: 1 });
 
         res.json(tasks);
     } catch (err) {
@@ -121,7 +124,7 @@ const getBacklogTasks = async (req, res) => {
         const tasks = await Task.find({
             status: { $in: ['todo', 'inprogress'] },
             dueDate: { $lt: today }  // Ensure dueDate is less than today
-        }).populate('project', 'name');
+        }).populate('project');
         res.json(tasks);
     } catch (err) {
         console.error(err.message);

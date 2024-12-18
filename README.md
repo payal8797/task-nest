@@ -31,6 +31,7 @@
 | **Database**           | MongoDB                      |  
 | **State Management**   | React hooks (`useState`, `useEffect`) |  
 | **Date Management**    | Moment.js                    |  
+| **Performance Analytics**    | Recharts                    |  
 
 ---
 
@@ -90,3 +91,6 @@ Make sure you have the following installed:
 
 - **Copy task in same project**
 - **Copy or move task to another project**
+
+- **Dashboard** comprehensive overview of task performance, including priority distribution, task status, and overdue tasks. 
+- **Calendar view** for all tasks 

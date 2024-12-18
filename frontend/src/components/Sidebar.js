@@ -164,7 +164,10 @@ const Sidebar = () => {
 
     return (
         <Sider width={300} style={{ background: '#fff', padding: '10px' }}>
-            <Menu mode="inline"  selectedKeys={[selectedKey]} defaultSelectedKeys={['today']} style={{ borderRight: 0 }}>
+            <Menu mode="inline"  selectedKeys={[selectedKey]} defaultSelectedKeys={['dashboard']} style={{ borderRight: 0 }}>
+                <Menu.Item key="dashboard" icon={<Icons.DashboardOutlined />} onClick={() => handleMenuClick('dashboard')}>
+                    <Link to="/dashboard">Dashboard</Link>
+                </Menu.Item>
                 <Menu.Item key="today" icon={<Icons.ScheduleOutlined />} onClick={() => handleMenuClick('today')}>
                     <Link to="/today">Today</Link>
                 </Menu.Item>
@@ -173,6 +176,9 @@ const Sidebar = () => {
                 </Menu.Item>
                 <Menu.Item key="backlog" icon={<Icons.FileTextOutlined />} onClick={() => handleMenuClick('backlog')}>
                     <Link to="/backlog">Backlog</Link>
+                </Menu.Item>
+                <Menu.Item key="calendar" icon={<Icons.CalendarOutlined />} onClick={() => handleMenuClick('calendar')}>
+                    <Link to="/calendar">Calendar</Link>
                 </Menu.Item>
             </Menu>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
