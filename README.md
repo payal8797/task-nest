@@ -88,4 +88,5 @@ Make sure you have the following installed:
 - **Update or Delete Projects** as required.  
 - **Update or Delete Tasks** as required.  
 
-  
+- **Copy task in same project**
+- **Copy or move task to another project**

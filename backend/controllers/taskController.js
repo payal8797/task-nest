@@ -129,6 +129,81 @@ const getBacklogTasks = async (req, res) => {
     }
 };
 
+// Duplicate Task in Same Project
+const duplicateTaskInSameProject = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const task = await Task.findById(id);
+
+        if (!task) {
+            return res.status(404).json({ msg: 'Task not found' });
+        }
+
+        const newTask = new Task({
+            name: task.name + ' (Copy)',
+            description: task.description,
+            priority: task.priority,
+            dueDate: task.dueDate,
+            status: 'todo',
+            project: task.project,
+        });
+
+        await newTask.save();
+        res.status(201).json(newTask);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
+// Duplicate Task to Another Project
+const duplicateTaskToAnotherProject = async (req, res) => {
+    try {
+        const { id, projectId } = req.params;
+        const task = await Task.findById(id);
+
+        if (!task) {
+            return res.status(404).json({ msg: 'Task not found' });
+        }
+
+        const newTask = new Task({
+            name: task.name + ' (Copy)',
+            description: task.description,
+            priority: task.priority,
+            dueDate: task.dueDate,
+            status: 'todo',
+            project: projectId, // New project ID
+        });
+
+        await newTask.save();
+        res.status(201).json(newTask);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
+
+// Move Task to Another Project
+const moveTaskToAnotherProject = async (req, res) => {
+    try {
+        const { id, projectId } = req.params;
+        const task = await Task.findById(id);
+
+        if (!task) {
+            return res.status(404).json({ msg: 'Task not found' });
+        }
+
+        task.project = projectId; // Update project ID
+        await task.save();
+
+        res.json({ msg: 'Task moved successfully', task });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+};
+
 
 module.exports = {
     createTask,
@@ -140,4 +215,7 @@ module.exports = {
     getTasksDueToday,
     getUpcomingTasks,
     getBacklogTasks,
+    duplicateTaskInSameProject,
+    duplicateTaskToAnotherProject,
+    moveTaskToAnotherProject,
 };

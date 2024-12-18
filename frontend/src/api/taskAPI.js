@@ -81,3 +81,35 @@ export const fetchAllTasks = async () => {
     }
 };
 
+// Duplicate task in the same project
+export const duplicateTaskInSameProject = async (taskId) => {
+    try {
+        const response = await axios.post(`${API_URL}/tasks/${taskId}/duplicate`);
+        return response.data;
+    } catch (error) {
+        console.error('Error duplicating task:', error);
+        throw error;
+    }
+};
+
+// Duplicate task to another project
+export const duplicateTaskToAnotherProject = async (taskId, projectId) => {
+    try {
+        const response = await axios.post(`${API_URL}/tasks/${taskId}/duplicate-to-project/${projectId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error duplicating task to another project:', error);
+        throw error;
+    }
+};
+
+// Move task to another project
+export const moveTaskToAnotherProject = async (taskId, projectId) => {
+    try {
+        const response = await axios.put(`${API_URL}/tasks/${taskId}/move-to-project/${projectId}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error moving task to another project:', error);
+        throw error;
+    }
+};

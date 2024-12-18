@@ -11,6 +11,9 @@ router.get('/:id', taskController.getTaskById);
 router.get('/project/:projectId', taskController.getTasksByProject);
 
 router.post('/', taskController.createTask);
+router.post('/:id/duplicate', taskController.duplicateTaskInSameProject)
+router.post('/:id/duplicate-to-project/:projectId', taskController.duplicateTaskToAnotherProject)
+router.put('/:id/move-to-project/:projectId', taskController.moveTaskToAnotherProject)
 
 router.put('/:id', taskController.updateTask);
 
