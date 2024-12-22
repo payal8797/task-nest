@@ -2,8 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const cors = require('cors');
-const projectRoutes = require('./routes/projectRoutes');
-const taskRoutes = require('./routes/taskRoutes');
+const projectRoutes = require('./api/projectRoutes');
+const taskRoutes = require('./api/taskRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 dotenv.config(); // Load environment variables
