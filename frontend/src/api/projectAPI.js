@@ -12,13 +12,12 @@ export const fetchAllProjects = async () => {
 };
 
 export const fetchProjectDetails = async (projectId) => {
-    try {  
-        const response = await axios.get(`/api/projects/${projectId}`);  
-        return response.data;  
-    } catch (error) {  
-        throw new Error('Failed to fetch project');  
-    }  
-
+    try {
+        const response = await axios.get(`${API_URL}/projects/${projectId}`);
+        return response.data;
+    } catch (error) {
+        throw new Error('Failed to fetch project');
+    }
 };
 
 export const addProject = async (projectData) => {  
